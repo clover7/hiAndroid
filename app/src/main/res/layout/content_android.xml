@@ -45,9 +45,9 @@
                 android:columnCount="3"
                 android:orientation="horizontal">
 
-                <Button android:text="1" android:id="@+id/btnLayout"/>
-                <Button android:text="2" android:id="@+id/btnActivity"/>
-                <Button android:text="3" android:id="@+id/h_Btn3"/>
+                <Button android:text="1" android:id="@+id/btnLayout" android:onClick="mOnClick"/>
+                <Button android:text="2" android:id="@+id/btnActivity" android:onClick="mOnClick"/>
+                <Button android:text="3" android:id="@+id/btnAdapter" android:onClick="mOnClick"/>
                 <Button android:text="4" android:id="@+id/h_Btn4"/>
                 <Button android:text="5" android:id="@+id/h_Btn5"/>
                 <Button android:text="6" android:id="@+id/h_Btn6"/>
@@ -59,14 +59,14 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="50px"
                 android:paddingBottom="20px"
-                android:text="수직 그리드 레이아웃"/>
+                android:text="Adapter View"/>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:rowCount="2">
-                <Button android:text="1" android:id="@+id/v_Btn1"/>
+                <Button android:text="1" android:id="@+id/btnListView" android:onClick="mOnClick"/>
                 <Button android:text="2" android:id="@+id/v_Btn2"/>
                 <Button android:text="3" android:id="@+id/v_Btn3"/>
                 <Button android:text="4" android:id="@+id/v_Btn4"/>

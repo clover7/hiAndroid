@@ -197,7 +197,7 @@ public class DeviceScanActivity extends ListActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder;
-            // General ListView optimization code.
+            // General ListViewActivity optimization code.
             if (view == null) {
                 view = mInflator.inflate(R.layout.listitem_device, null);
                 viewHolder = new ViewHolder();

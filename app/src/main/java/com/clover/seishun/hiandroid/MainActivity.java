@@ -50,14 +50,14 @@ public class MainActivity extends Activity {
 
 
         /*BLUETOOTH EXAMPLE*/
-        Button btnBLEScan = (Button)findViewById(R.id.btnBLEScan);
-        btnBLEScan.setText(R.string.btn_ble_scan);
-        btnBLEScan.setOnClickListener(new Button.OnClickListener(){
+        Button btnBT = (Button)findViewById(R.id.btnBT);
+        btnBT.setText(R.string.btn_bt_scan);
+        btnBT.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Change Activity >> BleScanActivity", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, BleScanActivity.class);
+                Toast.makeText(MainActivity.this, "Change Activity >> BluetoothActivity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, BluetoothActivity.class);
                 startActivity(intent);
             }
         });

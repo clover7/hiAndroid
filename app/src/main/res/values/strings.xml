@@ -23,7 +23,6 @@
     <string name="device_connect">기기등록</string>
     <string name="time_setting">시간설정</string>
     <string name="user_info_setting">사용자정보등록</string>
-    <string name="btn_ble_scan">SCAN</string>
     <string name="btn_Coffee">Coffee</string>
     <string name="title_activity_ble_scan">BLE_SCAN</string>
     <string name="large_text">
@@ -168,5 +167,16 @@
     "2. PAIRING : 디바이스 인증\n"
     "3. CONNECTION : 기기와 연결\n"
     "4. STREAMING : 디바이스와 데이터 통신\n" </string>
+    <string name="btn_bt_scan">BT SCAN</string>
+    <string name="btn_ble_scan">BLE SCAN</string>
+
+    <!-- BLUETOOTH ACTIVITY -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
 
 </resources>

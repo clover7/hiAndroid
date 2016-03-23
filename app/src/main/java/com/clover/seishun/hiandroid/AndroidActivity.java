@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.clover.seishun.hiandroid.android.AdapterViewActivity;
 import com.clover.seishun.hiandroid.android.IntentActivity;
 import com.clover.seishun.hiandroid.android.LayoutActivity;
+import com.clover.seishun.hiandroid.android.ListViewActivity;
 
 public class AndroidActivity extends AppCompatActivity {
 
@@ -45,20 +47,26 @@ public class AndroidActivity extends AppCompatActivity {
 
         Button btnLayout = (Button)findViewById(R.id.btnLayout);
         btnLayout.setText("Layout");
-        btnLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AndroidActivity.this, LayoutActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Button btnActivity = (Button)findViewById(R.id.btnActivity);
         btnActivity.setText("Activity");
-        btnActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AndroidActivity.this, IntentActivity.class);
+
+        Button btnAdaptor = (Button)findViewById(R.id.btnAdapter);
+        btnAdaptor.setText("Adapter");
+
+        Button btnListView = (Button)findViewById(R.id.btnListView);
+        btnListView.setText("ListView");
+    }
+
+    public void mOnClick(View v){
+        Intent intent;
+        switch (v.getId()){
+            case R.id.btnLayout:
+                intent = new Intent(this, LayoutActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnActivity:
+                intent = new Intent(this, IntentActivity.class);
                 /**호출한 대상을 나타내는 식별자.
                  * 리턴 시에 누구에 대한 리턴인가를 구분할 때 사용
                  * 여러 액티비티를 호출할 경우 리턴을 받는 메서드에서 어떤 액티비티에 대한 리턴인지 구분해야 하기 때문이다
@@ -68,8 +76,19 @@ public class AndroidActivity extends AppCompatActivity {
                 startActivityForResult(intent, ACT_VIEW);
 
                 /** 호출한 액티비티가 종료되면 다음 메서드가 호출된다 */
-            }
-        });
+                break;
+            case R.id.btnAdapter:
+                intent = new Intent(this, AdapterViewActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.btnListView:
+                intent = new Intent(this, ListViewActivity.class);
+                startActivity(intent);
+                break;
+
+
+        }
     }
 
     /**
@@ -95,11 +114,6 @@ public class AndroidActivity extends AppCompatActivity {
      * String.xml 에 제목을 지정하고 리소스를 참조하는 것이 공식적인 형식
      *
      * */
-
-    /**
-     *
-     *
-     */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
