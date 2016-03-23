@@ -9,3 +9,9 @@ app/*
 *.iml
 
 *.xml
+
+*.lock
+
+*.lock
+
+*.xml
