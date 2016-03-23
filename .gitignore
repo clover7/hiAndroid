@@ -4,14 +4,5 @@ build/*
 app/*
 
 *.lock 
-*.iml
-
-*.iml
-
-*.xml
-
-*.lock
-
-*.lock
-
-*.xml
+*.iml    
+*.bin  
