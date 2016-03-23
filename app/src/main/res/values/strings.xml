@@ -1,0 +1,172 @@
+<resources>
+    <string name="app_name">hiAndroid</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <!-- Coffee items -->
+    <string name="device_connect">기기등록</string>
+    <string name="time_setting">시간설정</string>
+    <string name="user_info_setting">사용자정보등록</string>
+    <string name="btn_ble_scan">SCAN</string>
+    <string name="btn_Coffee">Coffee</string>
+    <string name="title_activity_ble_scan">BLE_SCAN</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="title_activity_blescan">BLEScanActivity</string>
+    <string name="title_activity_sub">SubActivity</string>
+    <string name="title_intent">Intent</string>
+    <string name="intent_intro">Intent란</string>
+    <string name="intent_context">
+"Intent\n\n"
+"액티비티에서 다른 액티비트를 호출하는 주 목적은 무엇인가 작업을 시키기 위함이다.\n"
+"매인엑티비티 혼자 모든 작업을 수행하면 반복이 심해지고 형식성도 떨어지므로 다른 액티비티를 호출하여 일을 분담시킨다.\n"
+"이때 액티비티끼리 서로 호출하려면 통신을 위한 장치가 바로 인텐트.\n"
+
+"액티비티, 서비스, BR 등 컴포넌트가 수행해야 할 작업에 대한 정보를 가지며, 이 작업 결과를 돌려주기 위해서도 사용된다..\n"
+"메서드의 인수 리턴값과 용도가 비슷.\n"
+"안드로이드의 컴포넌트끼리 통신하기 위한 메시지 시스템.\n"
+
+"startActivity()\n\n"
+"액티비티 호출 시 사용하며 해당 매서드를 사용하여 인수로 호출할 대상을 지정하는 Intent 객체를 전달한다.\n"
+
+"1. 명시적 인텐트\n\n"
+"new Intent(액티비티 클래스를 구현할 컨텍스트(호출자 정보: this), 호출할 액티비티의 클래스 정보(호출되는 액티비티의 클래스정보));\n"
+"=주로 같은 응용프로그램 내의 서브 액티비티를 호출할 때 사용, (외부응용프로그램의 액티비티도 호출 가능, 권한필요)\n"
+
+"2. 암시적 인텐트\n\n"
+"1) Action\n"
+"1) Data\n"
+"1) Type\n"
+"1) Category\n"
+"1) Component\n"
+"1) Extras\n"
+"1) Flag\n"
+"=주로 같은 응용프로그램 내의 서브 액티비티를 호출할 때 사용, (외부응용프로그램의 액티비티도 호출 가능, 권한필요)\n"
+
+"3. 액티비티간의 통신\n\n"
+"1) <code> Intent putExtra (String name, int value) </code>\n"
+"1) <code> int getIntExtra (String name, int defaultValue) </code>\n"
+"거의 모든 타입에 대해 오버로딩되어 있으며 배열이나 시리얼라이징 객체까지 저장할 수 있다.\n"
+"<code>name</code>은 전달하는 인수에 대한 이름이되, 중복되지 않아야 한다.\n"
+"1) Category\n"
+"1) Component\n"
+"1) Extras\n"
+"1) Flag\n"
+
+    </string>
+    <string name="intent_footer">마지막으로</string>
+    <string name="btn_Finish">FINISH</string>
+    <string name="view_web">Web</string>
+    <string name="view_call">calling</string>
+    <string name="view_browser">BROWSER</string>
+    <string name="ble_context">
+     "<strong>STEP</strong>\n"
+    "1. DISCOVERY : 주변기기탐색\n"
+    "2. PAIRING : 디바이스 인증\n"
+    "3. CONNECTION : 기기와 연결\n"
+    "4. STREAMING : 디바이스와 데이터 통신\n" </string>
+
+</resources>

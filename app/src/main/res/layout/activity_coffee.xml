@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"  android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="com.clover.seishun.hiandroid.android.LayoutActivity">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Coffee BLE PROTOCOL"
+                android:id="@+id/:title_coffee"
+                android:paddingBottom="20px"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="초기연결단계"
+                android:paddingBottom="20px"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:orientation="horizontal">
+
+                <Button android:id="@+id/h_Btn1"/>
+                <Button android:id="@+id/h_Btn2"/>
+                <Button android:id="@+id/h_Btn3"/>
+                <Button android:id="@+id/h_Btn4"/>
+                <Button android:id="@+id/h_Btn5"/>
+                <Button android:id="@+id/h_Btn6"/>
+
+            </GridLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="50px"
+                android:paddingBottom="20px"
+                android:text="수직 그리드 레이아웃"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:rowCount="2">
+                <Button android:text="1" android:id="@+id/v_Btn1"/>
+                <Button android:text="2" android:id="@+id/v_Btn2"/>
+                <Button android:text="3" android:id="@+id/v_Btn3"/>
+                <Button android:text="4" android:id="@+id/v_Btn4"/>
+            </GridLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="50px"
+                android:paddingBottom="20px"
+                android:text="셀병합 그리드 레이아웃 (행)"/>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3">
+                <Button android:text="1" android:id="@+id/cSpan_Btn1"/>
+                <Button android:text="2" android:layout_rowSpan="2"
+                    android:layout_gravity="fill"
+                    android:id="@+id/cSpan_Btn2"/>
+                <Button android:text="3" android:id="@+id/cSpan_Btn3"/>
+                <Button android:text="4" android:id="@+id/cSpan_Btn4"/>
+                <Button android:text="6" android:id="@+id/cSpan_Btn6"/>
+                <Button android:text="7" android:id="@+id/cSpan_Btn7"/>
+                <Button android:text="8" android:id="@+id/cSpan_Btn8"/>
+                <Button android:text="9" android:id="@+id/cSpan_Btn9"/>
+            </GridLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="50px"
+                android:paddingBottom="20px"
+                android:text="셀병합 그리드 레이아웃(열)"/>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3">
+                <Button android:text="1" android:id="@+id/rSpan_Btn1"/>
+                <Button android:text="2" android:layout_rowSpan="2" android:id="@+id/rSpan_Btn2"/>
+                <Button android:text="3" android:id="@+id/rSpan_Btn3"/>
+                <Button android:text="4" android:id="@+id/rSpan_Btn4"/>
+                <Button android:text="6" android:id="@+id/rSpan_Btn6"/>
+                <Button android:text="7" android:id="@+id/rSpan_Btn7"/>
+                <Button android:text="8" android:id="@+id/rSpan_Btn8"/>
+                <Button android:text="9" android:id="@+id/rSpan_Btn9"/>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+
