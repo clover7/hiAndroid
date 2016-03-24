@@ -20,7 +20,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 0;
 
     BluetoothAdapter mBluetoothAdapter;
-    TextView textView;
+
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
     private ArrayAdapter<CharSequence> mStoredDeviceArrayAdapter;
@@ -33,8 +33,18 @@ public class BluetoothActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
 
-        textView = (TextView)findViewById(R.id.txtBLEContext);
+        TextView textView = (TextView)findViewById(R.id.txtBLEContext);
         textView.setText("BLUETOOTH");
+
+        TextView textView1 = (TextView)findViewById(R.id.title_stored_devices);
+        textView1.setText("Stored Devices");
+
+        TextView textView2 = (TextView)findViewById(R.id.title_new_devices);
+        textView2.setText("New Devices");
+
+        TextView textView3 = (TextView)findViewById(R.id.title_paired_devices);
+        textView3.setText("Paired Devices");
+
 
         mStoredDeviceArrayAdapter = ArrayAdapter.createFromResource(this, R.array.devices, android.R.layout.simple_list_item_1);
 
@@ -62,8 +72,6 @@ public class BluetoothActivity extends AppCompatActivity {
     private void connectingDevices() {
 //        connectingServer();
 //        ConnectingClient();
-
-
     }
 
     private void findingBLEDevices() {
@@ -94,9 +102,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     private void discoveringDevices() {
 
-    }
-
-//    // Create a BroadcastReceiver for ACTION_FOUND
+//            // Create a BroadcastReceiver for ACTION_FOUND
 //    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 //        public void onReceive(Context context, Intent intent) {
 //            String action = intent.getAction();
@@ -112,6 +118,9 @@ public class BluetoothActivity extends AppCompatActivity {
 //    // Register the BroadcastReceiver
 //    IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
 //    registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
+    }
+
+
 //
 
     private void queryingPairedDevices() {
@@ -124,7 +133,8 @@ public class BluetoothActivity extends AppCompatActivity {
 
         // If there are paired devices, add each one to the ArrayAdapter
         if (pairedDevices.size() > 0) {
-            findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
+            //findViewById(R.id.paired_devices).setMinimumHeight(330);
+
             for (BluetoothDevice device : pairedDevices) {
                 mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
             }
