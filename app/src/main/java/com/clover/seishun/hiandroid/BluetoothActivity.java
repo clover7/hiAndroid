@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,6 +56,13 @@ public class BluetoothActivity extends AppCompatActivity {
         storedDevicesListView.setOnItemClickListener(mDeviceClickListener);
     }
 
+    @Override
+    public void onBackPressed() {
+        this.unregisterReceiver(mReceiver);
+        mBluetoothAdapter.cancelDiscovery();
+        finish();
+    }
+
     private void bluetoothLowEnergy() {
         settingUpBluetooth();
         findingBLEDevices();
@@ -77,7 +85,7 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 
     private void findingBLEDevices() {
-        Toast.makeText(this, "findBLEDevices", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "findBLEDevices", Toast.LENGTH_LONG).show();
 
         queryingPairedDevices();
 
@@ -98,9 +106,6 @@ public class BluetoothActivity extends AppCompatActivity {
     private void discoveringDevices() {
 
         // Create a BroadcastCustomReceiver for ACTION_FOUND
-        boolean discovery = false;
-
-
         // Register for broadcasts when a device is discovered
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(mReceiver, filter);
@@ -109,9 +114,8 @@ public class BluetoothActivity extends AppCompatActivity {
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
-
         // Indicate scanning in the title
-//        setProgressBarIndeterminateVisibility(true);
+        setProgressBarIndeterminateVisibility(true);
 //        setTitle(R.string.scanning);
 
         // Turn on sub-title for new devices
@@ -128,7 +132,7 @@ public class BluetoothActivity extends AppCompatActivity {
 //
 
     private void queryingPairedDevices() {
-        Toast.makeText(this, "queryingPairedDevices", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "queryingPairedDevices", Toast.LENGTH_SHORT).show();
 
         mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
@@ -156,7 +160,20 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 
     private void settingUpBluetooth() {
-        Toast.makeText(this,"setting up bluetooth", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"setting up bluetooth", Toast.LENGTH_SHORT).show();
+
+        //1. Get the Bluetooth Adapter
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
+        // BluetoothAdapter through BluetoothManager.
+        final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        mBluetoothAdapter = bluetoothManager.getAdapter();
+
+        if(!mBluetoothAdapter.isEnabled()){
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
         /**
          * A dialog will appear requesting user permission to enable Bluetooth, as shown in Figure 1.
          * If the user responds "Yes," the system will begin to enable Bluetooth and focus will return to your application
@@ -174,19 +191,6 @@ public class BluetoothActivity extends AppCompatActivity {
          containing the new and old Bluetooth states, respectively. Possible values for these extra fields are STATE_TURNING_ON,
          STATE_ON, STATE_TURNING_OFF, and STATE_OFF. Listening for this broadcast can be useful to detect changes
          made to the Bluetooth state while your app is running.*/
-
-        //1. Get the Bluetooth Adapter
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
-        // BluetoothAdapter through BluetoothManager.
-        final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = bluetoothManager.getAdapter();
-
-        if(!mBluetoothAdapter.isEnabled()){
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
     }
 
     @Override
@@ -199,7 +203,8 @@ public class BluetoothActivity extends AppCompatActivity {
         switch (requestCode){
             case REQUEST_ENABLE_BT:
                 if(resultCode == RESULT_OK){
-                    Toast.makeText(this, "BLUETOOTH SETTING RESULT_OK", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "BLUETOOTH SETTING RESULT_OK", Toast.LENGTH_SHORT).show();
+                    discoveringDevices();
                 }else if(resultCode == RESULT_CANCELED){
                     Toast.makeText(this, "BLUETOOTH SETTING RESULT_CANCELED", Toast.LENGTH_LONG).show();
                 }
@@ -214,6 +219,13 @@ public class BluetoothActivity extends AppCompatActivity {
                 break;
             case R.id.btnBLEStop:
                 Toast.makeText(this, "BLUETOOTH SCAN Stop", Toast.LENGTH_LONG).show();
+                mBluetoothAdapter.cancelDiscovery();
+                break;
+            case R.id.btnSettingBT:
+                //bt 설정화면
+                Toast.makeText(this, "BLUETOOTH SETTING", Toast.LENGTH_LONG).show();
+                Intent btSettingIntent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
+                startActivity(btSettingIntent);
                 break;
         }
     }
@@ -257,6 +269,7 @@ public class BluetoothActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
@@ -276,45 +289,4 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         }
     };
-//
-//    private class ScanResultAdaptor extends BaseAdapter{
-//
-//        @Override
-//        public int getCount() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return 0;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            return null;
-//        }
-//    }
-//
-//    private class BroadcastReceiver mReceiver = new BroadcastReceiver() {
-//
-//        public void onReceive(Context context, Intent intent) {
-//            String action = intent.getAction();
-//            // When discovery finds a device
-//            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-//                // Get the BluetoothDevice object from the Intent
-//                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-//                // Add the name and address to an array adapter to show in a ListView
-//                mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-//            }
-//        }
-//    };
-//    // Register the BroadcastCustomReceiver
-//    IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-//    registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
-
 }

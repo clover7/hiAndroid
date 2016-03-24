@@ -28,7 +28,7 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2">
+            android:columnCount="3">
     
             <Button android:id="@+id/btnBLEStart" android:text="START SCAN"
                     android:background="@color/theme2_waterblue"
@@ -43,7 +43,14 @@
                 android:background="@color/theme1_gray"
                 android:textColor="@color/theme2_lightblue"
                 android:onClick="mOnClick"
-                android:padding="20px"/>/>
+                android:padding="20px"/>
+
+            <Button android:id="@+id/btnSettingBT" android:text="SETTING"
+                android:layout_marginLeft="25px"
+                android:background="@color/theme1_grayblack"
+                android:textColor="@color/theme2_lightblue"
+                android:onClick="mOnClick"
+                android:padding="20px"/>
     
         </GridLayout>
 
