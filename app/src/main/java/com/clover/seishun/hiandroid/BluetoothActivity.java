@@ -57,9 +57,16 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        this.unregisterReceiver(mReceiver);
-        mBluetoothAdapter.cancelDiscovery();
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Make sure we're not doing discovery anymore
+        if (mBluetoothAdapter != null) {
+            mBluetoothAdapter.cancelDiscovery();
+
+            // Unregister broadcast listeners
+            this.unregisterReceiver(mReceiver);
+        }
         finish();
     }
 
