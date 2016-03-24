@@ -1,8 +1,6 @@
-.gradle/*
-.idea/*
-build/*
-app/*
-
+.gradle/**/*.*
+.idea/**/*.* 
+build/**/*.* 
 *.lock 
-*.iml    
-*.bin  
+*.iml      
+*.bin
