@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<ScrollView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent">-->
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,16 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.clover.seishun.hiandroid.BluetoothActivity"
-        >
-    
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtBLE"
-        android:text="BLE DEVICE SCAN"
-        android:layout_marginTop="20px"
-        android:layout_marginBottom="20px"/>
+        tools:context="com.clover.seishun.hiandroid.BluetoothActivity">
 
         <TextView
             android:layout_width="match_parent"
@@ -51,7 +46,7 @@
                 android:padding="20px"/>/>
     
         </GridLayout>
-    
+
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,8 +62,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/paired_devices"
-            android:layout_weight="0.83"></ListView>
+            android:id="@+id/paired_devices"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -80,7 +74,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/new_devices"></ListView>
+            android:id="@+id/new_devices"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -90,10 +84,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="215dp"
-            android:id="@+id/stored_devices"
-            android:footerDividersEnabled="false"></ListView>
-
+            android:layout_height="wrap_content"
+            android:id="@+id/stored_devices"/>
     </LinearLayout>
-
 </RelativeLayout>
