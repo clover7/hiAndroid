@@ -11,9 +11,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.android.AdapterViewActivity;
+import com.clover.seishun.hiandroid.android.BroadcastReceiverActivity;
+import com.clover.seishun.hiandroid.android.ContentProviderActivity;
 import com.clover.seishun.hiandroid.android.IntentActivity;
 import com.clover.seishun.hiandroid.android.LayoutActivity;
 import com.clover.seishun.hiandroid.android.ListViewActivity;
+import com.clover.seishun.hiandroid.android.ServiceActivity;
 
 public class AndroidActivity extends AppCompatActivity {
 
@@ -51,11 +54,21 @@ public class AndroidActivity extends AppCompatActivity {
         Button btnActivity = (Button)findViewById(R.id.btnActivity);
         btnActivity.setText("Activity");
 
+        Button btnCP = (Button)findViewById(R.id.btnCP);
+        btnCP.setText("CP");
+
+        Button btnBR = (Button)findViewById(R.id.btnBR);
+        btnBR.setText("BR");
+
+        Button btnService = (Button)findViewById(R.id.btnService);
+        btnService.setText("Service");
+
         Button btnAdaptor = (Button)findViewById(R.id.btnAdapter);
         btnAdaptor.setText("Adapter");
 
         Button btnListView = (Button)findViewById(R.id.btnListView);
         btnListView.setText("ListView");
+
     }
 
     public void mOnClick(View v){
@@ -87,7 +100,18 @@ public class AndroidActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
-
+            case R.id.btnCP:
+                intent = new Intent(this, ContentProviderActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnBR:
+                intent = new Intent(this, BroadcastReceiverActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnService:
+                intent = new Intent(this, ServiceActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

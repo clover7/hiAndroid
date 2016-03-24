@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="new_devices" type="id">new_devices</item>
+    <item name="stored_devices" type="id">Stored Devices</item>
+</resources>

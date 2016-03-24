@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="devices">
+        <item>CHOICE_SPO2 - BCOXM</item>
+        <item>IR_TMP      - TAIDOC-TM</item>
+        <item>AND_1       - AND</item>
+        <item>AND_2       - AND</item>
+        <item>AND_TMP     - BLUEMOD+B20</item>
+        <item>H3_GLUCO_1  - AMC_JANDJ</item>
+        <item>H3_GLUCO_2  - AMC_JandJ</item>
+        <item>UA_767PBT   - UA-767PBT</item>
+        <item>UC_321PBT   - UC_321PBT</item>
+        <item>UA_851PBT   - UA-851PBT</item>
+        <item>UC_324PBT   - UC_324PBT</item>
+        <item>ACCU_CHEK   - ACCU-CHEK</item>
+        <item>UT_302PBT   - BLUEMOD+B20</item>
+        <item>Walkie+D    - COFFEE_BLE</item>
+
+    </string-array>
+</resources>

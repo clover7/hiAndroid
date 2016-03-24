@@ -80,6 +80,12 @@
         </activity>
         <activity android:name=".android.ListViewActivity" >
         </activity>
+        <activity android:name=".android.ServiceActivity" >
+        </activity>
+        <activity android:name=".android.BroadcastReceiverActivity" >
+        </activity>
+        <activity android:name=".android.ContentProviderActivity" >
+        </activity>
     </application>
 
 </manifest>

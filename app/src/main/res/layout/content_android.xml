@@ -47,11 +47,10 @@
 
                 <Button android:text="1" android:id="@+id/btnLayout" android:onClick="mOnClick"/>
                 <Button android:text="2" android:id="@+id/btnActivity" android:onClick="mOnClick"/>
-                <Button android:text="3" android:id="@+id/btnAdapter" android:onClick="mOnClick"/>
-                <Button android:text="4" android:id="@+id/h_Btn4"/>
-                <Button android:text="5" android:id="@+id/h_Btn5"/>
-                <Button android:text="6" android:id="@+id/h_Btn6"/>
-
+                <Button android:text="4" android:id="@+id/btnCP"        android:onClick="mOnClick"/>
+                <Button android:text="5" android:id="@+id/btnBR"        android:onClick="mOnClick"/>>
+                <Button android:text="6" android:id="@+id/btnService" android:onClick="mOnClick"/>
+                <Button android:text="3" android:id="@+id/btnEmpty"/>
             </GridLayout>
 
             <TextView
@@ -67,7 +66,7 @@
                 android:orientation="vertical"
                 android:rowCount="2">
                 <Button android:text="1" android:id="@+id/btnListView" android:onClick="mOnClick"/>
-                <Button android:text="2" android:id="@+id/v_Btn2"/>
+                <Button android:text="2" android:id="@+id/btnAdapter" android:onClick="mOnClick"/>
                 <Button android:text="3" android:id="@+id/v_Btn3"/>
                 <Button android:text="4" android:id="@+id/v_Btn4"/>
             </GridLayout>
