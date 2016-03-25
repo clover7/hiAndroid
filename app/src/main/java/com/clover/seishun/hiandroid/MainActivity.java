@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.ble.DeviceScanActivity;
+import com.clover.seishun.hiandroid.bt.BluetoothActivity;
 
 
 public class MainActivity extends Activity {
