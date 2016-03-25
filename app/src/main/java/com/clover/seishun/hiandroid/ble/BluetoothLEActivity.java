@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,12 +20,14 @@ import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.R;
 
+import java.util.HashMap;
 import java.util.Set;
 
 public class BluetoothLEActivity extends AppCompatActivity {
 
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_NEW_ACTIVITY = 0;
+    private static final long SCAN_PERIOD = 10000;
 
     BluetoothAdapter mBluetoothAdapter;
 
@@ -32,13 +35,16 @@ public class BluetoothLEActivity extends AppCompatActivity {
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private ArrayAdapter<String> mNewBLEDevicesListAdapter;
     private ArrayAdapter<CharSequence> mStoredDeviceArrayAdapter;
-
+    public boolean mScanning;
+    public Handler mHandler;
+    public int i=0;
+    public HashMap<String, Object> deviceList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_le);
-
+        mHandler = new Handler();
 //        TextView textView = (TextView)findViewById(R.id.txtBLEContext);
 //        textView.setText(R.string.ble_context);
     }
@@ -65,6 +71,7 @@ public class BluetoothLEActivity extends AppCompatActivity {
 
     private void bluetoothLowEnergy() {
         settingUpBLE();
+
         findingBLEDevices();
         connectingGATTServer();
         readingBLEAttributes();
@@ -142,7 +149,6 @@ public class BluetoothLEActivity extends AppCompatActivity {
             }
             Toast.makeText(BluetoothLEActivity.this, msg, Toast.LENGTH_LONG).show();
         }
-
     };
 
     private void findingBLEDevices() {
@@ -154,38 +160,66 @@ public class BluetoothLEActivity extends AppCompatActivity {
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
 
-        discoveringDevices();
         // Find and set up the ListViewActivity for newly discovered devices
         ListView newDevicesListView = (ListView) findViewById(R.id.ble_new_devices);
         newDevicesListView.setAdapter(mNewBLEDevicesListAdapter);
         newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
-//        BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
-//            @Override
-//            public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mNewBLEDevicesListAdapter.addDevice(device);
-//                        mLeDeviceListAdapter.notifyDataSetChanged();
-//                    }
-//                });
-//
-//            }
-//        };
+         //discoveringDevices_usingReceiver();
+         //discoveringDevices_mLeScanCallback;
 
-
-
+        scanLeDevice(true);
         /**
          * To find BLE devices, you use the startLeScan() method.
          * This method takes a BluetoothAdapter.LeScanCallback as a parameter.
          * You must implement this callback, because that is how scan results are returned.
          * Because scanning is battery-intensive, you should observe the following guidelines:
          */
-
     }
 
-    private void discoveringDevices() {
+    private void scanLeDevice(final boolean enable) {
+        if (enable) {
+            // Stops scanning after a pre-defined scan period.
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mScanning = false;
+                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                }
+            }, SCAN_PERIOD);
+
+            mScanning = true;
+            mBluetoothAdapter.startLeScan(mLeScanCallback);
+        } else {
+            mScanning = false;
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+        }
+    }
+
+    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
+
+        @Override
+        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    i++;
+                    String msg = device.getName() + ":: " + device.getAddress();
+                    Toast.makeText(BluetoothLEActivity.this, "mLeScanCallback ::" +i + " ->" + msg, Toast.LENGTH_SHORT).show();
+                    if(deviceList.containsKey(device.getName()) &
+                            deviceList.containsValue(device.getAddress()))
+                        return;
+
+                    deviceList.put(device.getName(),device.getAddress());
+                    mNewBLEDevicesListAdapter.add(device.getName() + ":: " + device.getAddress());
+//                    mLeDeviceListAdapter.addDevice(device);
+//                    mLeDeviceListAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+    };
+
+    private void discoveringDevices_usingReceiver() {
 
         // Create a BroadcastCustomReceiver for ACTION_FOUND
         // Register for broadcasts when a device is discovered
@@ -207,12 +241,14 @@ public class BluetoothLEActivity extends AppCompatActivity {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
 
+            String action = intent.getAction();
+            String msg = "";
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                msg = device.getName() + "\n" + device.getAddress();
                 // If it's already paired, skip it, because it's been listed already
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     mNewBLEDevicesListAdapter.add(device.getName() + "\n" + device.getAddress());
@@ -226,6 +262,9 @@ public class BluetoothLEActivity extends AppCompatActivity {
                     mNewBLEDevicesListAdapter.add(noDevices);
                 }
             }
+
+            Toast.makeText(BluetoothLEActivity.this, "onReceive ::" + action + " -> "+msg, Toast.LENGTH_SHORT).show();
+
         }
     };
 
@@ -283,6 +322,8 @@ public class BluetoothLEActivity extends AppCompatActivity {
         switch (v.getId()){
             case R.id.btnBLEStart:
                 Toast.makeText(BluetoothLEActivity.this, "BLE SCAN Start", Toast.LENGTH_SHORT).show();
+                deviceList = new HashMap<>();
+                i++;
                 bluetoothLowEnergy();
                 break;
             case R.id.btnBLEStop:
