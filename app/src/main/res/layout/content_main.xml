@@ -59,36 +59,40 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
+            android:columnCount="4"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Android Example"
-                android:layout_columnSpan="3"
-                android:id="@+id/btnAndroid"/>
+                android:layout_columnSpan="2"
+                android:id="@+id/btnAndroid" android:onClick="mOnClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BLE Example"
+                android:layout_columnSpan="2"
+                android:id="@+id/btnBLEExample" android:onClick="mOnClick"/>
+
 
             <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnBT"/>
+            android:id="@+id/btnBT" android:onClick="mOnClick"/>
 
 
             <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Coffee"
-            android:id="@+id/btnCoffee"/>
+            android:id="@+id/btnCoffee" android:onClick="mOnClick"/>
 
             <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnBLE"/>
-
-
-
-
+            android:id="@+id/btnBLE" android:onClick="mOnClick"/>
         </GridLayout>
 
     </LinearLayout>

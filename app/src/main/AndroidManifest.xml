@@ -74,7 +74,7 @@
         </activity>
         <activity android:name=".android.WebViewActivity" >
         </activity>
-        <activity android:name=".user.BluetoothLEActivity" >
+        <activity android:name=".ble.BluetoothLEActivity" >
         </activity>
         <activity android:name=".android.AdapterViewActivity" >
         </activity>
@@ -92,11 +92,12 @@
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
-                <action android:name="andexam.ver4_1.FREEWIFI"/>
+                <action android:name="andexam.ver4_1.FREEWIFI" />
             </intent-filter>
         </receiver>
 
-
+        <activity android:name=".android.LifeCycleActivity" >
+        </activity>
     </application>
 
 </manifest>

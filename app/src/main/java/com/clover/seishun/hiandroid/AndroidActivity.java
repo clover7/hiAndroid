@@ -1,6 +1,7 @@
 package com.clover.seishun.hiandroid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,7 @@ import com.clover.seishun.hiandroid.android.ListViewActivity;
 import com.clover.seishun.hiandroid.android.ServiceActivity;
 
 public class AndroidActivity extends AppCompatActivity {
-
+    final String TAG = AndroidActivity.class.getSimpleName();
     final static int ACT_VIEW = 0;
 
     @Override
@@ -38,7 +39,23 @@ public class AndroidActivity extends AppCompatActivity {
             }
         });
 
+        if(savedInstanceState == null){
+            Toast.makeText(this, TAG + ":: savedInstanceState is null", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, TAG + ":: savedInstanceState > " + savedInstanceState, Toast.LENGTH_SHORT).show();
+        }
+//        SharedPreferences pref = getSharedPreferences("SaveState",0);
+//        int y =pref.getInt("y", 50);
+//
+//        View vw = new View(this);
+//        vw.setFocusable(true);
+//        vw.setFocusable(true);
+//        setContentView(vw);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         Button btnAndroidFinish = (Button)findViewById(R.id.btnAndroidFinish);
         btnAndroidFinish.setText(R.string.btn_Finish);
         btnAndroidFinish.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +85,21 @@ public class AndroidActivity extends AppCompatActivity {
 
         Button btnListView = (Button)findViewById(R.id.btnListView);
         btnListView.setText("ListView");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences pref = getSharedPreferences( "SaveState",0);
+        SharedPreferences.Editor edit = pref.edit();
+        int y=0;
+        edit.putInt("y" , y);
+        edit. commit();
+    }
+
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putBundle("saveInstance", outState);
     }
 
     public void mOnClick(View v){
