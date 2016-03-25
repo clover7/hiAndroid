@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:columnCount="3">
     
-            <Button android:id="@+id/btnBLEStart" android:text="START SCAN"
+            <Button android:id="@+id/btnBTStart" android:text="START SCAN"
                     android:background="@color/theme2_waterblue"
                     android:backgroundTint="@color/theme1_blue1"
                     android:shadowColor="@color/theme1_grayblack"
@@ -38,14 +38,14 @@
                     android:onClick="mOnClick"
                     android:padding="20px"/>
 
-            <Button android:id="@+id/btnBLEStop" android:text="STOP SCAN"
+            <Button android:id="@+id/btnBTStop" android:text="STOP SCAN"
                 android:layout_marginLeft="25px"
                 android:background="@color/theme1_gray"
                 android:textColor="@color/theme2_lightblue"
                 android:onClick="mOnClick"
                 android:padding="20px"/>
 
-            <Button android:id="@+id/btnSettingBT" android:text="SETTING"
+            <Button android:id="@+id/btnBTSetting" android:text="SETTING"
                 android:layout_marginLeft="25px"
                 android:background="@color/theme1_grayblack"
                 android:textColor="@color/theme2_lightblue"

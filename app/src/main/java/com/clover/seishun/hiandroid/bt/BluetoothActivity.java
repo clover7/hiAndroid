@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.R;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
@@ -40,7 +39,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     // Connection devices (pairing하기위해서 우선 uuid선언)
     private static final UUID UUID_SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private static final UUID MY_UUID = UUID.fromString("");
+//    private static final UUID MY_UUID = UUID.fromString("");
     private static final String NAME = "";
     private static final int MESSAGE_READ =0 ;
 
@@ -85,7 +84,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     private void bluetoothLowEnergy() {
         settingUpBluetooth();
-        findingBLEDevices();
+        findingBTDevices();
         connectingDevices();
         managingConnection();
         workingProfiles();
@@ -136,7 +135,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     }
 
-    private void findingBLEDevices() {
+    private void findingBTDevices() {
         //Toast.makeText(this, "findBLEDevices", Toast.LENGTH_LONG).show();
 
         /**기존의 연결된 기기 검색
@@ -255,56 +254,56 @@ public class BluetoothActivity extends AppCompatActivity {
                     Toast.makeText(this, "BLUETOOTH SETTING RESULT_OK", Toast.LENGTH_SHORT).show();
                     discoveringDevices();
                 }else if(resultCode == RESULT_CANCELED){
-                    Toast.makeText(this, "BLUETOOTH SETTING RESULT_CANCELED", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "BLUETOOTH SETTING RESULT_CANCELED", Toast.LENGTH_SHORT).show();
                 }
         }
     }
 
 
-    private class AcceptThread extends Thread {
-        private final BluetoothServerSocket mmServerSocket;
-
-        public AcceptThread() {
-            // Use a temporary object that is later assigned to mmServerSocket,
-            // because mmServerSocket is final
-            BluetoothServerSocket tmp = null;
-            try {
-                // MY_UUID is the app's UUID string, also used by the client code
-                tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
-            } catch (IOException e) { }
-            mmServerSocket = tmp;
-        }
-
-        public void run() {
-            BluetoothSocket socket = null;
-            // Keep listening until exception occurs or a socket is returned
-            while (true) {
-                try {
-                    socket = mmServerSocket.accept();
-                } catch (IOException e) {
-                    break;
-                }
-                // If a connection was accepted
-                if (socket != null) {
-                    // Do work to manage the connection (in a separate thread)
-                    manageConnectedSocket(socket);
-                    try {
-                        mmServerSocket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
-            }
-        }
-
-        /** Will cancel the listening socket, and cause the thread to finish */
-        public void cancel() {
-            try {
-                mmServerSocket.close();
-            } catch (IOException e) { }
-        }
-    }
+//    private class AcceptThread extends Thread {
+//        private final BluetoothServerSocket mmServerSocket;
+//
+//        public AcceptThread() {
+//            // Use a temporary object that is later assigned to mmServerSocket,
+//            // because mmServerSocket is final
+//            BluetoothServerSocket tmp = null;
+//            try {
+//                // MY_UUID is the app's UUID string, also used by the client code
+//                tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
+//            } catch (IOException e) { }
+//            mmServerSocket = tmp;
+//        }
+//
+//        public void run() {
+//            BluetoothSocket socket = null;
+//            // Keep listening until exception occurs or a socket is returned
+//            while (true) {
+//                try {
+//                    socket = mmServerSocket.accept();
+//                } catch (IOException e) {
+//                    break;
+//                }
+//                // If a connection was accepted
+//                if (socket != null) {
+//                    // Do work to manage the connection (in a separate thread)
+//                    manageConnectedSocket(socket);
+//                    try {
+//                        mmServerSocket.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                }
+//            }
+//        }
+//
+//        /** Will cancel the listening socket, and cause the thread to finish */
+//        public void cancel() {
+//            try {
+//                mmServerSocket.close();
+//            } catch (IOException e) { }
+//        }
+//    }
 //    private class ConnectThread extends Thread {
 //        private final BluetoothSocket mmSocket;
 //        private final BluetoothDevice mmDevice;
@@ -415,15 +414,15 @@ public class BluetoothActivity extends AppCompatActivity {
 
     public void mOnClick(View v){
         switch (v.getId()){
-            case R.id.btnBLEStart:
+            case R.id.btnBTStart:
                 Toast.makeText(this, "BLUETOOTH SCAN Start", Toast.LENGTH_LONG).show();
                 bluetoothLowEnergy();
                 break;
-            case R.id.btnBLEStop:
+            case R.id.btnBTStop:
                 Toast.makeText(this, "BLUETOOTH SCAN Stop", Toast.LENGTH_LONG).show();
                 mBluetoothAdapter.cancelDiscovery();
                 break;
-            case R.id.btnSettingBT:
+            case R.id.btnBTSetting:
                 //bt 설정화면
                 Toast.makeText(this, "BLUETOOTH SETTING", Toast.LENGTH_LONG).show();
                 Intent btSettingIntent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
