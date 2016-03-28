@@ -97,10 +97,10 @@ public class AndroidActivity extends AppCompatActivity {
         edit. commit();
     }
 
-    public void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        outState.putBundle("saveInstance", outState);
-    }
+//    public void onSaveInstanceState(Bundle outState){
+//        super.onSaveInstanceState(outState);
+//        outState.putBundle("saveInstance", outState);
+//    }
 
     public void mOnClick(View v){
         Intent intent;
