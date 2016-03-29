@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.ble.BluetoothLEActivity;
+import com.clover.seishun.hiandroid.ble.CustomActivitySample;
 import com.clover.seishun.hiandroid.ble.DeviceScanActivity;
 import com.clover.seishun.hiandroid.bt.BluetoothActivity;
 
@@ -41,6 +42,9 @@ public class MainActivity extends Activity {
             }
         });
 
+
+
+
         Button btnBT = (Button) findViewById(R.id.btnBT);
         btnBT.setText(R.string.btn_bt_scan);
 
@@ -49,6 +53,11 @@ public class MainActivity extends Activity {
 
         Button btnBLE = (Button) findViewById(R.id.btnBLE);
         btnBLE.setText(R.string.btn_ble_scan);
+
+        Button btnBLEFAB = (Button) findViewById(R.id.btnBLEFAB);
+        btnBLEFAB.setText("FLOATING");
+
+
     }
 
     public void mOnClick(View v){
@@ -79,6 +88,10 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "BluetoothLEActivity", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
+            case R.id.btnBLEFAB:
+                intent = new Intent(this, CustomActivitySample.class);
+                startActivity(intent);
+                break;
         }
 
     }
@@ -87,14 +100,6 @@ public class MainActivity extends Activity {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
 
     @Override

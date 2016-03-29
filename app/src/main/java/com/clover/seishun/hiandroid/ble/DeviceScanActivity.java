@@ -13,6 +13,7 @@ package com.clover.seishun.hiandroid.ble;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import android.app.Activity;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
@@ -23,6 +24,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +50,7 @@ public class DeviceScanActivity extends ListActivity {
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,21 @@ public class DeviceScanActivity extends ListActivity {
             finish();
             return;
         }
+
+
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//                Toast.makeText(DeviceScanActivity.this, "FloatingActionButton", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+//        ListView provider_service_list = (ListView)findViewById(R.id.provider_service_list);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -195,26 +213,52 @@ public class DeviceScanActivity extends ListActivity {
             return i;
         }
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder;
             // General ListViewActivity optimization code.
-            if (view == null) {
-                view = mInflator.inflate(R.layout.listitem_device, null);
+            if (convertView == null) {
+                convertView = mInflator.inflate(R.layout.listitem_device, null);
                 viewHolder = new ViewHolder();
-                viewHolder.deviceAddress = (TextView) view.findViewById(R.id.device_address);
-                viewHolder.deviceName = (TextView) view.findViewById(R.id.device_name);
-                view.setTag(viewHolder);
+                viewHolder.deviceAddress = (TextView) convertView.findViewById(R.id.device_address);
+                viewHolder.deviceName = (TextView) convertView.findViewById(R.id.device_name);
+                convertView.setTag(viewHolder);
+
+                FloatingActionButton fab1 = (FloatingActionButton)convertView.findViewById(R.id.fab1);
+                fab1.setOnClickListener(new FloatingActionButton.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(DeviceScanActivity.this, "FloatingActionButton", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+//                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                LayoutInflater inflater
+//                fab.show();
+//
+//                fab1.setOnClickListener(new FloatingActionButton.OnClickListener() {
+//                    @Override
+//                    public void onClick(View convertView) {
+////                Toast.makeText(BluetoothPairingActivity.this, "FloatingActionButton", Toast.LENGTH_SHORT).show();
+////                Intent intent = new Intent(Intent.ACTION_VIEW);
+////                intent.addCategory(Intent.CATEGORY_DEFAULT);
+////                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+////                intent.setClassName("com.uwiseone.hicare", "kr.co.benchbee.lemp.activity.auth.Scr_Agree");
+////                intent.putExtra("ID", "사용자 아이디");
+////                startActivity(intent);
+//                    }
+//                });
             } else {
-                viewHolder = (ViewHolder) view.getTag();
+                viewHolder = (ViewHolder) convertView.getTag();
             }
-            BluetoothDevice device = mLeDevices.get(i);
+            BluetoothDevice device = mLeDevices.get(position);
             final String deviceName = device.getName();
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
                 viewHolder.deviceName.setText(R.string.unknown_device);
             viewHolder.deviceAddress.setText(device.getAddress());
-            return view;
+            return convertView;
         }
     }
     // Device scan callback.

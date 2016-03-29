@@ -209,4 +209,43 @@
         수신자가 방송을 수신했는지의 여부는 관여하지 않으며, 누가 먼저 방송을 받을지도 알 수 없다. (비순서적) => 효율이 좋다.\n"
     </string>
     <string name="br_detectFree">무료 네트워크</string>
+    <!-- -->
+    <string name="txt_paired_devices">[Paired devices]</string>
+    <string name="txt_available_devices">[Available devices]</string>
+    <string name="txt_pulse_oximeter">Pulse Oximeter</string>
+    <string name="txt_paired">paired</string>
+    <string name="txt_and">AND</string>
+    <string name="txt_us767pbt">UA-767PBT</string>
+    <string name="txt_andbp_model">(AND BP5100802009)</string>
+    <string name="txt_health">health</string>
+    <string name="txt_call_comment">You have a video call.</string>
+    <string name="txt_decline">Decline</string>
+    <string name="txt_answer">Answer</string>
+    <string name="txt_birthday_gender">Birthday / Gender</string>
+    <string name="txt_hyphen"> - </string>
+    <string name="txt_male">male</string>
+    <string name="txt_female">female</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_blood_glucose">Blood Glucose</string>
+    <string name="txt_h3">H3</string>
+    <string name="txt_ba110">BA-110</string>
+    <string name="txt_server">Server</string>
+    <string name="txt_registration">Registration</string>
+    <string name="txt_phonenumber">PhoneNumber</string>
+    <string name="txt_transfer_history">Transfer history</string>
+    <string name="txt_blood_pressure">Blood Pressure</string>
+    <string name="txt_title_choicemmed">- CHOICEMMED</string>
+    <string name="txt_choicemmed">CHOICEMMED</string>
+    <string name="txt_md300c318t2">MD300C318T2</string>
+    <string name="txt_ua767pbt">UA-767PBT</string>
+    <string name="txt_ua851pbt">UA-851PBT</string>
+    <string name="txt_weight">Weight</string>
+    <string name="txt_uc321pbt">UC-321PBT</string>
+    <string name="txt_temperature">Temperature</string>
+    <string name="txt_ut302pbt">UT-302PBT</string>
+    <string name="txt_title_product_and">- A&amp;D</string>
+    <string name="txt_product_and">A&amp;D</string>
+    <string name="txt_bluetooth">[Bluetooth]</string>
+    <string name="txt_bluetooth_available_dev">Turn on Bluetooth to see a list of available devices.</string>
+
 </resources>

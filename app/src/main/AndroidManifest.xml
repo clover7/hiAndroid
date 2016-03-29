@@ -98,6 +98,8 @@
 
         <activity android:name=".android.LifeCycleActivity" >
         </activity>
+        <activity android:name=".ble.CustomActivitySample" >
+        </activity>
     </application>
 
 </manifest>
