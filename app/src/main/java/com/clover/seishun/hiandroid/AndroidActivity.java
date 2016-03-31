@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.clover.seishun.hiandroid.Network.RtrofitLibraryActivity;
 import com.clover.seishun.hiandroid.android.AdapterViewActivity;
 import com.clover.seishun.hiandroid.android.AnnotationActivity;
 import com.clover.seishun.hiandroid.android.BroadcastReceiverActivity;
@@ -19,7 +20,6 @@ import com.clover.seishun.hiandroid.android.CustomViewActivity;
 import com.clover.seishun.hiandroid.android.IntentActivity;
 import com.clover.seishun.hiandroid.android.LayoutActivity;
 import com.clover.seishun.hiandroid.android.ListViewActivity;
-import com.clover.seishun.hiandroid.Network.RestfulActivity;
 import com.clover.seishun.hiandroid.android.ServiceActivity;
 
 public class AndroidActivity extends AppCompatActivity {
@@ -132,7 +132,7 @@ public class AndroidActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.RestfulBtn:
-                intent = new Intent(this, RestfulActivity.class);
+                intent = new Intent(this, RtrofitLibraryActivity.class);
                 startActivity(intent);
                 break;
         }

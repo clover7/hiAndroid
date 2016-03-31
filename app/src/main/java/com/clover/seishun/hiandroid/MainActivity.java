@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.ble.BluetoothLEActivity;
-import com.clover.seishun.hiandroid.android.CustomViewActivity;
 import com.clover.seishun.hiandroid.ble.DeviceScanActivity;
 import com.clover.seishun.hiandroid.bt.BluetoothActivity;
 
@@ -53,11 +52,6 @@ public class MainActivity extends Activity {
 
         Button btnBLE = (Button) findViewById(R.id.btnBLE);
         btnBLE.setText(R.string.btn_ble_scan);
-
-        Button btnBLEFAB = (Button) findViewById(R.id.btnBLEFAB);
-        btnBLEFAB.setText("FLOATING");
-
-
     }
 
     public void mOnClick(View v){
@@ -86,10 +80,6 @@ public class MainActivity extends Activity {
             case R.id.btnBLE:
                 intent = new Intent(this, BluetoothLEActivity.class);
                 Toast.makeText(MainActivity.this, "BluetoothLEActivity", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-                break;
-            case R.id.btnBLEFAB:
-                intent = new Intent(this, CustomViewActivity.class);
                 startActivity(intent);
                 break;
         }
