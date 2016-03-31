@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.android.AdapterViewActivity;
+import com.clover.seishun.hiandroid.android.AnnotationActivity;
 import com.clover.seishun.hiandroid.android.BroadcastReceiverActivity;
 import com.clover.seishun.hiandroid.android.ContentProviderActivity;
+import com.clover.seishun.hiandroid.android.CustomViewActivity;
 import com.clover.seishun.hiandroid.android.IntentActivity;
 import com.clover.seishun.hiandroid.android.LayoutActivity;
 import com.clover.seishun.hiandroid.android.ListViewActivity;
@@ -65,6 +67,12 @@ public class AndroidActivity extends AppCompatActivity {
             }
         });
 
+        init();
+
+    }
+
+    private void init() {
+
         Button btnLayout = (Button)findViewById(R.id.btnLayout);
         btnLayout.setText("Layout");
 
@@ -85,6 +93,12 @@ public class AndroidActivity extends AppCompatActivity {
 
         Button btnListView = (Button)findViewById(R.id.btnListView);
         btnListView.setText("ListView");
+
+        Button btnFloating = (Button)findViewById(R.id.floatBtn);
+        btnFloating.setText("Floating Btn");
+
+        Button btnAnnotation = (Button)findViewById(R.id.annotationBtn);
+        btnAnnotation.setText("Annotation");
     }
 
     @Override
@@ -102,6 +116,19 @@ public class AndroidActivity extends AppCompatActivity {
 //        outState.putBundle("saveInstance", outState);
 //    }
 
+    public void mOnClick_H_example(View v){
+        Intent intent;
+        switch (v.getId()){
+            case R.id.floatBtn:
+                intent = new Intent(this, CustomViewActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.annotationBtn:
+                intent = new Intent(this, AnnotationActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
     public void mOnClick(View v){
         Intent intent;
         switch (v.getId()){

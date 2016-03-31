@@ -98,7 +98,9 @@
 
         <activity android:name=".android.LifeCycleActivity" >
         </activity>
-        <activity android:name=".ble.CustomActivitySample" >
+        <activity android:name=".android.CustomViewActivity" >
+        </activity>
+        <activity android:name=".android.AnnotationActivity" >
         </activity>
     </application>
 

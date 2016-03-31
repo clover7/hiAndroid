@@ -14,5 +14,11 @@
     <color name="theme2_waterblue">#4ea1d3</color>
     <color name="theme2_chacol">#454552</color>
 
+    <color name="blue_background">#396db7</color>
+    <color name="red_background">#e31718</color>
+    <color name="gray_background">#5f5f5f</color>
+    <color name="navy_background">#676d7b</color>
+    <color name="navy_pressed_background">#34405d</color>
+
 
 </resources>

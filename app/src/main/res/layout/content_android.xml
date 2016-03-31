@@ -77,16 +77,17 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="50px"
                 android:paddingBottom="20px"
-                android:text="셀병합 그리드 레이아웃 (행)"/>
+                android:text="H example Test"/>
 
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:columnCount="3">
-                <Button android:text="1" android:id="@+id/cSpan_Btn1"/>
+                <Button android:text="1" android:id="@+id/floatBtn"
+                    android:onClick="mOnClick_H_example"/>
                 <Button android:text="2" android:layout_rowSpan="2"
                     android:layout_gravity="fill"
-                    android:id="@+id/cSpan_Btn2"/>
+                    android:id="@+id/annotationBtn"/>
                 <Button android:text="3" android:id="@+id/cSpan_Btn3"/>
                 <Button android:text="4" android:id="@+id/cSpan_Btn4"/>
                 <Button android:text="6" android:id="@+id/cSpan_Btn6"/>

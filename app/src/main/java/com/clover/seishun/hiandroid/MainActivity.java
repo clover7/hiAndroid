@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.ble.BluetoothLEActivity;
-import com.clover.seishun.hiandroid.ble.CustomActivitySample;
+import com.clover.seishun.hiandroid.android.CustomViewActivity;
 import com.clover.seishun.hiandroid.ble.DeviceScanActivity;
 import com.clover.seishun.hiandroid.bt.BluetoothActivity;
 
@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
                 break;
             case R.id.btnBLEFAB:
-                intent = new Intent(this, CustomActivitySample.class);
+                intent = new Intent(this, CustomViewActivity.class);
                 startActivity(intent);
                 break;
         }

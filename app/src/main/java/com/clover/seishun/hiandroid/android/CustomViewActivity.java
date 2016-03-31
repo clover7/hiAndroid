@@ -1,4 +1,4 @@
-package com.clover.seishun.hiandroid.ble;
+package com.clover.seishun.hiandroid.android;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -43,6 +43,11 @@ class ManyAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //각 항목의 뷰생성
+
+        /**12.2.3. 대용량 항목 표시
+         * 버튼 레이아웃 참조
+         * android 1-p618 */
+
         String log = "position : "+ position;
         if(convertView == null){
             convertView = Inflater.inflate(android.R.layout.simple_list_item_1,parent,false);
@@ -66,7 +71,7 @@ class ManyAdapter extends BaseAdapter{
     }
 }
 
-public class CustomActivitySample extends AppCompatActivity {
+public class CustomViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +83,15 @@ public class CustomActivitySample extends AppCompatActivity {
         floatBtn.setOnClickListener(new FloatingActionButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CustomActivitySample.this, "FloatingActionButton", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomViewActivity.this, "FloatingActionButton", Toast.LENGTH_SHORT).show();
             }
         });
+
+        /**floating button 아니더라도 그냥 button으로 가능.
+         * 부모 view에 바인딩하면 됨.
+         * 그러나 스타일은 버튼 스타일이 그대로 적용되므로 변경 필요.
+         * 버튼 레이아웃 참조
+         * android 2-p1895 alignParentBottom, right*/
 
     }
 }
@@ -92,7 +103,7 @@ public class CustomActivitySample extends AppCompatActivity {
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_custom_activity_sample);
+//        setContentView(R.layout.activity_custom_view);
 //    }
 //
 //    @Override
