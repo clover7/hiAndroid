@@ -19,6 +19,7 @@ import com.clover.seishun.hiandroid.android.CustomViewActivity;
 import com.clover.seishun.hiandroid.android.IntentActivity;
 import com.clover.seishun.hiandroid.android.LayoutActivity;
 import com.clover.seishun.hiandroid.android.ListViewActivity;
+import com.clover.seishun.hiandroid.Network.RestfulActivity;
 import com.clover.seishun.hiandroid.android.ServiceActivity;
 
 public class AndroidActivity extends AppCompatActivity {
@@ -99,6 +100,9 @@ public class AndroidActivity extends AppCompatActivity {
 
         Button btnAnnotation = (Button)findViewById(R.id.annotationBtn);
         btnAnnotation.setText("Annotation");
+
+        Button RestfulBtn = (Button)findViewById(R.id.RestfulBtn);
+        RestfulBtn.setText("Network");
     }
 
     @Override
@@ -125,6 +129,10 @@ public class AndroidActivity extends AppCompatActivity {
                 break;
             case R.id.annotationBtn:
                 intent = new Intent(this, AnnotationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.RestfulBtn:
+                intent = new Intent(this, RestfulActivity.class);
                 startActivity(intent);
                 break;
         }

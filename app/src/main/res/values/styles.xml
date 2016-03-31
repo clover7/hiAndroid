@@ -15,41 +15,4 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <!-- button shape -->
-    <shape xmlns:android="http://schemas.android.com/apk/res/android">
-        android:shape="rectangle">
-        <gradient android:startColor="#2D8CD6"
-            android:endColor="#2D8CD6"
-            android:angle="270"></gradient>
-
-        <corners android:bottomRightRadius="0dp"
-            android:bottomLeftRadius="25dp"
-            android:topLeftRadius="0dp"
-            android:topRightRadius="25dp"></corners>
-    </shape>
-
-    <!-- round button -->
-    <shape android:shape="rectangle"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <gradient
-            android:startColor="@color/blue_background"
-            android:endColor="@color/theme2_lightblue"
-            android:angle="90">
-        </gradient>
-
-        <corners android:radius="20dip" />
-
-        <stroke
-            android:width="1px"
-            android:color="@color/theme1_gray" />
-    </shape>
-
-    <!-- Shadow -->
-    <shape android:shape="rectangle"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
-        <solid android:color="@color/theme2_pink"/>
-        <corners android:radius="20dip"/>
-
-    </shape>
 </resources>

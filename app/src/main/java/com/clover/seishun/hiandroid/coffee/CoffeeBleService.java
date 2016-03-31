@@ -1,6 +1,5 @@
 package com.clover.seishun.hiandroid.coffee;
 
-import android.app.Service;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -9,16 +8,13 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.os.IBinder;
-//
-//import org.apache.log4j.Logger;
 
 import com.clover.seishun.hiandroid.ble.BluetoothLeService;
 
-import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+
+//
+//import org.apache.log4j.Logger;
 
 
 public class CoffeeBleService extends BluetoothLeService {
