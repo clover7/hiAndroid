@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.clover.seishun.hiandroid.Network.RetrofitLibraryActivity;
 import com.clover.seishun.hiandroid.android.AdapterViewActivity;
-import com.clover.seishun.hiandroid.android.AnnotationActivity;
+import com.clover.seishun.hiandroid.Annotation.AnnotationActivity;
 import com.clover.seishun.hiandroid.android.BroadcastReceiverActivity;
 import com.clover.seishun.hiandroid.android.ContentProviderActivity;
 import com.clover.seishun.hiandroid.android.CustomViewActivity;

@@ -100,7 +100,7 @@
         </activity>
         <activity android:name=".android.CustomViewActivity" >
         </activity>
-        <activity android:name=".android.AnnotationActivity" >
+        <activity android:name=".Annotation.AnnotationActivity" >
         </activity>
         <activity android:name=".Network.RestfulActivity" >
         </activity>
