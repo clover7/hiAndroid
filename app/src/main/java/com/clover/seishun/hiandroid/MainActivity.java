@@ -41,9 +41,6 @@ public class MainActivity extends Activity {
             }
         });
 
-
-
-
         Button btnBT = (Button) findViewById(R.id.btnBT);
         btnBT.setText(R.string.btn_bt_scan);
 

@@ -91,7 +91,8 @@
                     android:onClick="mOnClick_H_example"/>
                 <Button android:text="3" android:id="@+id/RestfulBtn"
                     android:onClick="mOnClick_H_example"/>
-                <Button android:text="4" android:id="@+id/cSpan_Btn4"/>
+                <Button android:text="4" android:id="@+id/cSpan_Btn4"
+                    android:onClick="mOnClick_H_example"/>/>
                 <Button android:text="6" android:id="@+id/cSpan_Btn6"/>
                 <Button android:text="7" android:id="@+id/cSpan_Btn7"/>
                 <Button android:text="8" android:id="@+id/cSpan_Btn8"/>

@@ -108,7 +108,29 @@
         </activity>
         <activity android:name=".Network.WebserviceActivity" >
         </activity>
-        <activity android:name=".Network.RtrofitLibraryActivity" >
+        <activity android:name=".Network.RetrofitLibraryActivity" >
+        </activity>
+
+        <service
+            android:name=".android.MyIntentService"
+            android:exported="false" >
+        </service>
+
+        <activity android:name=".Network.CrawlerSampleActivity" >
+        </activity>
+
+        <service
+            android:name=".Network.BasicNetworkService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name=".Network.RetrofitLibraryService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <activity android:name=".Network.VolleyLibraryActivity" >
         </activity>
     </application>
 
