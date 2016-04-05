@@ -22,6 +22,8 @@ public interface GitHub {
         @Header("svcAuthKey") String svcAuthKey,
         @Header("mbrId") String mbrId);
 
+
+
     //Post 구현 해보기
 
 }

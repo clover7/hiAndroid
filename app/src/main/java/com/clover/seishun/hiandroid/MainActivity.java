@@ -14,10 +14,21 @@ import android.widget.Toast;
 import com.clover.seishun.hiandroid.ble.BluetoothLEActivity;
 import com.clover.seishun.hiandroid.ble.DeviceScanActivity;
 import com.clover.seishun.hiandroid.bt.BluetoothActivity;
+import com.swoa.test.SwoaMainActivity;
 
 
 public class MainActivity extends Activity {
    final String TAG = MainActivity.class.getSimpleName();
+
+//    @ViewById(R.id.btnSwoa)
+//    Button btnSwoa;
+//
+//
+//    @Click(R.id.btnSwoa)
+//    private void btnSwoaClick(){
+//        Intent intent = new Intent(this, SwoaMainActivity.class);
+//        startActivity(intent);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,8 @@ public class MainActivity extends Activity {
         Toast.makeText(this,TAG +"::"+ "onCreate",Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //btnSwoa.setText("SWOA");
 
         //btn event
         Button btnStart = (Button) findViewById(R.id.btnStart);
@@ -49,6 +62,9 @@ public class MainActivity extends Activity {
 
         Button btnBLE = (Button) findViewById(R.id.btnBLE);
         btnBLE.setText(R.string.btn_ble_scan);
+
+        Button btnSwoa = (Button) findViewById(R.id.btnSwoa);
+        btnSwoa.setText("SWOA");
     }
 
     public void mOnClick(View v){
@@ -79,6 +95,13 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "BluetoothLEActivity", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
+
+            case R.id.btnSwoa:
+                intent = new Intent(this, SwoaMainActivity.class);
+                Toast.makeText(MainActivity.this, "SwoaMainActivity", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+
         }
 
     }

@@ -106,7 +106,7 @@
         </activity>
         <activity android:name=".Network.BasicNetworkActivity" >
         </activity>
-        <activity android:name=".Network.WebserviceActivity" >
+        <activity android:name="swoa.WebserviceActivity" >
         </activity>
         <activity android:name=".Network.RetrofitLibraryActivity" >
         </activity>
@@ -131,6 +131,10 @@
         </service>
 
         <activity android:name=".Network.VolleyLibraryActivity" >
+        </activity>
+        <activity android:name="com.swoa.test.SWOAWebserviceActivity" >
+        </activity>
+        <activity android:name="com.swoa.test.SwoaMainActivity" >
         </activity>
     </application>
 
