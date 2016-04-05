@@ -1,5 +1,6 @@
 package com.swoa.test;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +8,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.clover.seishun.hiandroid.R;
-
-import org.androidannotations.annotations.ViewById;
 
 import java.util.HashMap;
 
@@ -24,15 +23,18 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
     private String result;
 
     DeviceInfo deviceInfo;
+    ProgressDialog mProgress;
+//    @ViewById(R.id.txtLoginUserInfo)
+//    TextView loginUserInfo;
 
-    @ViewById(R.id.txtLoginUserInfo)
-    TextView loginUserInfo;
+//    @ViewById(R.id.userId)
+//    TextView userId;
+//
+//    @ViewById(R.id.password)
+//    TextView password;
 
-    @ViewById(R.id.userId)
-    TextView userId;
-
-    @ViewById(R.id.password)
-    TextView password;
+    private String userId;
+    private int password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +46,23 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
 
         TextView txtUserId = (TextView)findViewById(R.id.userId);
         TextView txtPassword = (TextView)findViewById(R.id.password);
+
         txtUserId.setText("userId : ");
         txtPassword.setText("password : ");
 
-        String userId = result.get("userId");
+        userId = result.get("userId");
         String strPassword = result.get("password");
-        Integer password = Integer.parseInt(strPassword);
-
-        getLoginUserInfo(userId,password);
+        password = Integer.parseInt(strPassword);
+        txtUserId.append(userId);
+        txtPassword.append(String.valueOf(password));
         //retrofitStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mProgress = ProgressDialog.show(this,"wait","Downloading....");
+        getLoginUserInfo(userId, password);
     }
 
     private void getLoginUserInfo(String userId, Integer password) {
@@ -63,7 +73,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
-        Log.d(TAG,">> retrofit build");
+        Log.d(TAG, ">> retrofit build");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("userID", userId);
@@ -75,6 +85,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         loginUserCall.enqueue(new Callback<UserInfo>() {
             @Override
             public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+
                 result = "\n ========= Response ========= \n";
                 result += ">> message : " + response.message() + " \n"
                         + ">> response : " + response.raw() + " \n"
@@ -98,6 +109,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
                 Log.d(TAG, ">> onFailure : " + result);
             }
         });
+        mProgress.dismiss();
     }
 
 
