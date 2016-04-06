@@ -74,6 +74,10 @@ public class RetrofitLibraryActivity extends AppCompatActivity {
         Button btnVolley = (Button)findViewById(R.id.btnVolley);
         btnVolley.setText("Volley");
 
+        Button btnPostTest = (Button)findViewById(R.id.btnPostTest);
+        btnPostTest.setText("PostTest");
+
+
 
         txtNetworkContext = (TextView)findViewById(R.id.txtNetworkContext);
     }
@@ -101,7 +105,65 @@ public class RetrofitLibraryActivity extends AppCompatActivity {
                 mRaw = true;
                 startAsyncTask();
                 break;
+            case R.id.btnPostTest:
+                mProgress = ProgressDialog.show(this,"wait","Downloading....");
+                mRaw = true;
+                startPostTest();
+                break;
         }
+    }
+
+    private void startPostTest() {
+        Log.d(TAG, ">> RetroDownloadJson(String " + API_URL + ")");
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
+
+        Log.d(TAG,">> retrofit build");
+
+        // Create an instance of our GitHub API interface.
+        GitHub github = retrofit.create(GitHub.class);
+
+        List<HashMap<String, String>> paramArray = new ArrayList<>();
+        HashMap<String, String> params = new HashMap<>();
+
+        params.put("muscleExerCd", "F040");
+        paramArray.add(params);
+        params.put("muscleExerCd", "F055");
+        paramArray.add(params);
+        params.put("muscleExerCd", "F020");
+        paramArray.add(params);
+        params.put("muscleExerCd", "F010");
+        paramArray.add(params);
+
+        Call<HashMap<String,Object>> callMuscleStrength = github.insertMuscleStrength(SVC_AUTH_KEY, MBRID, paramArray);
+        callMuscleStrength.enqueue(new Callback<HashMap<String,Object>>() {
+            @Override
+            public void onResponse(Call<HashMap<String,Object>> call, Response<HashMap<String,Object>> response) {
+
+                if (!response.isSuccessful()) {
+                    result += "error response, no access to resource?";
+                    System.out.println(call.request().url() + ": failed: " + response.code());
+                    return;
+                } else {
+                    // tasks available
+                    result += "tasks available : " + response.message() + " \n"
+                            + "raw : " + response.raw() + " \n"
+                            + "body : " + response.body();
+                    parseJSONData(response.body());
+                }
+                Log.d(TAG, ">> onResponse : " + result);
+                mProgress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<HashMap<String, Object>> call, Throwable t) {
+                result += t.getMessage();
+                Log.d(TAG, ">> onFailure : " + result);
+            }
+        });
     }
 
     private void startBasicToRetrofit() {

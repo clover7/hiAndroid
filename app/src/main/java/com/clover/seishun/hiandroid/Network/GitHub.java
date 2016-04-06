@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -22,7 +24,11 @@ public interface GitHub {
         @Header("svcAuthKey") String svcAuthKey,
         @Header("mbrId") String mbrId);
 
-
+    @POST("omni/exer/outCalo/strength/muscle")
+    Call<HashMap<String, Object>> insertMuscleStrength(
+            @Header("svcAuthKey") String svcAuthKey,
+            @Header("mbrId") String mbrId,
+            @Body List<HashMap<String, String>> params);
 
     //Post 구현 해보기
 

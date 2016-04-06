@@ -59,7 +59,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+        protected void onResume() {
         super.onResume();
         mProgress = ProgressDialog.show(this,"wait","Downloading....");
         getLoginUserInfo(userId, password);
@@ -111,7 +111,6 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         });
         mProgress.dismiss();
     }
-
 
     private void retrofitStart() {
         Log.d(TAG, ">> RetroDownloadJson(String " + API_URL + ")");

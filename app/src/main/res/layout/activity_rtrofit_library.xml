@@ -23,10 +23,9 @@
             <Button android:text="3" android:id="@+id/w_Btn3" android:onClick="mClick"/>
             <Button android:text="4" android:id="@+id/btnAsyncTask" android:onClick="mClick"/>
             <Button android:text="5" android:id="@+id/btnVolley" android:onClick="mClick"/>
-            <Button android:text="6" android:id="@+id/w_Btn6" android:onClick="mClick"/>
+            <Button android:text="6" android:id="@+id/btnPostTest" android:onClick="mClick"/>
 
         </GridLayout>
-
 
         <TextView
             android:layout_width="match_parent"
