@@ -12,7 +12,4 @@ public class AdditionalProperty{
     private String nickname = "";
     @Getter @Setter private String description = "";
 
-    @Getter @Setter private String lastLoginTime;
-    @Getter @Setter private String rfid;
-    @Getter @Setter private String userSpecificInfo;
 }

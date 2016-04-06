@@ -10,7 +10,6 @@ public class Address {
     @Getter @Setter private String zipcode = "";
     @Getter @Setter private String subAddress = "";
     @Getter @Setter private String detailAddress = "";
-    @Getter @Setter private String apt = "";
     @Getter @Setter private String dong = "";
     @Getter @Setter private String ho = "";
 

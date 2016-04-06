@@ -18,15 +18,6 @@ public class SwoaMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swoa_main);
 
-        Button POST = (Button)findViewById(R.id.swoa_Btn3);
-        POST.setText("POST");
-        POST.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postTest();
-            }
-        });
-
         Button createUser = (Button)findViewById(R.id.swoa_Btn1);
         createUser.setText("createUser");
         createUser.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +35,57 @@ public class SwoaMainActivity extends AppCompatActivity {
                 loginUserInfo();
             }
         });
+
+
+        Button SaveCoffeeActiveData = (Button)findViewById(R.id.swoa_Btn5);
+        SaveCoffeeActiveData.setText("ActiveData");
+        SaveCoffeeActiveData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCoffeeActiveData();
+            }
+        });
+
+        Button SaveCoffeeCurrentData = (Button)findViewById(R.id.swoa_Btn4);
+        SaveCoffeeCurrentData.setText("CurrentData");
+        SaveCoffeeCurrentData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCoffeeCurrentData();
+            }
+        });
+
+        Button SaveCoffeeDayData = (Button)findViewById(R.id.swoa_Btn6);
+        SaveCoffeeDayData.setText("DayData");
+        SaveCoffeeDayData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCoffeeDayData();
+            }
+        });
+
+    }
+
+    private void saveCoffeeCurrentData() {
+//
+//        - 당일 누적 데이터 저장 : SaveCoffeeCurrentData(string value)
+//        input param 예){"insung_seq":2757,"steps":"100","calorie":34,"distance":10,"exer_time":10,"max_conti_steps":200,"max_exer_time":15,"max_relax_time":20,"max_velocity":12}
+
+
+    }
+
+    private void saveCoffeeActiveData() {
+
+//        - 30분 측정데이터 저장 : SaveCoffeeActiveData(string value)
+//        input param 예){"insung_seq":2757,"measure_date":"20160405150210","steps":100,"calorie":34,"distance":10,"exer_time":10}
+
+    }
+
+    private void saveCoffeeDayData() {
+//
+//        - 일자별 데이터 저장 : SaveCoffeeDayData(string value)
+//        input param 예){"insung_seq":2757,"measure_date":"20160405150210","max_conti_steps":200,"max_exer_time":15,"max_relax_time":20,"max_velocity":12}
+
     }
 
     private void createUser() {
@@ -55,23 +97,11 @@ public class SwoaMainActivity extends AppCompatActivity {
         params.put("userId",userId);
         params.put("password", password);
 
-        intent.putExtra("createUser",params);
+        intent.putExtra("params", params);
+        intent.putExtra("btnClick",1);
+//        intent.putExtra("btnClick",R.id.swoa_Btn1);
         startActivity(intent);
     }
-
-    private void postTest() {
-        String userId = "INswoapat1";
-        String password = "1234";
-
-        Intent intent = new Intent(this, SWOAWebserviceActivity.class);
-        HashMap<String, String> params= new HashMap<>();
-        params.put("userId",userId);
-        params.put("password", password);
-
-        intent.putExtra("postTest",params);
-        startActivity(intent);
-    }
-
 
     private void loginUserInfo(){
         String userId = "INswoapat1";
@@ -82,7 +112,9 @@ public class SwoaMainActivity extends AppCompatActivity {
         params.put("userId",userId);
         params.put("password", password);
 
-        intent.putExtra("loginUser",params);
+        intent.putExtra("params", params);
+        intent.putExtra("btnClick",2);
+//        intent.putExtra("btnClick",R.id.swoa_Btn2);
         startActivity(intent);
     }
 }

@@ -13,9 +13,4 @@ public class StatusProperty {
     @Getter
     @Setter
     private String terminalInfo = "";
-
-
-    @Getter
-    @Setter
-    private String status;
 }
