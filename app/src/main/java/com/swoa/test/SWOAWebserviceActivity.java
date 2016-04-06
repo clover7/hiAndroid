@@ -96,22 +96,24 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         BasicProperty basicProperty = new BasicProperty();
         StatusProperty statusProperty = new StatusProperty();
         AdditionalProperty additionalProperty = new AdditionalProperty();
-        deviceInfo.setAdditionalProperty(additionalProperty);
-//
+
         basicProperty.setUserID(userId);
         basicProperty.setUserPW(strPassword);
         basicProperty.setSex("FEMALE");
-        deviceInfo.setBasicProperty(basicProperty);
 
         PhoneNumber phoneNumber = new PhoneNumber();
         basicProperty.setPhoneNumber(phoneNumber);
+
         Address address = new Address();
         basicProperty.setAddress(address);
+
         UserName userName = new UserName();
         userName.setFirstName("test1");
         userName.setLastName("pat1");
         basicProperty.setUserName(userName);
 
+        deviceInfo.setAdditionalProperty(additionalProperty);
+        deviceInfo.setBasicProperty(basicProperty);
         deviceInfo.setStatusProperty(statusProperty);
 
         Call<ResultInfo> createUserCall = service.createUser(deviceInfo);
