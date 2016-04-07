@@ -13,7 +13,6 @@ import com.swoa.test.pojo.AdditionalProperty;
 import com.swoa.test.pojo.Address;
 import com.swoa.test.pojo.BasicProperty;
 import com.swoa.test.pojo.PhoneNumber;
-import com.swoa.test.pojo.ResultInfo;
 import com.swoa.test.pojo.StatusProperty;
 import com.swoa.test.pojo.UserName;
 
@@ -44,6 +43,9 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
     private String userId="";
     private int password;
     private String strPassword="";
+    private String firstName;
+    private String lastName;
+    private String sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
 
         userId = params.get("userId");
         strPassword = params.get("password");
+        firstName = params.get("firstName");
+        lastName  = params.get("lastName");
+        sex = "FEMALE";
+
         password = Integer.parseInt(strPassword);
 
 //        Serializable event = intent.getSerializableExtra("btnClick");
@@ -99,7 +105,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
 
         basicProperty.setUserID(userId);
         basicProperty.setUserPW(strPassword);
-        basicProperty.setSex("FEMALE");
+        basicProperty.setSex(sex);
 
         PhoneNumber phoneNumber = new PhoneNumber();
         basicProperty.setPhoneNumber(phoneNumber);
@@ -108,18 +114,18 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         basicProperty.setAddress(address);
 
         UserName userName = new UserName();
-        userName.setFirstName("test1");
-        userName.setLastName("pat1");
+        userName.setFirstName(firstName);
+        userName.setLastName(lastName);
         basicProperty.setUserName(userName);
 
         deviceInfo.setAdditionalProperty(additionalProperty);
         deviceInfo.setBasicProperty(basicProperty);
         deviceInfo.setStatusProperty(statusProperty);
 
-        Call<ResultInfo> createUserCall = service.createUser(deviceInfo);
-        createUserCall.enqueue(new Callback<ResultInfo>() {
+        Call<UserInfo> createUserCall = service.createUser(deviceInfo);
+        createUserCall.enqueue(new Callback<UserInfo>() {
             @Override
-            public void onResponse(Call<ResultInfo> call, Response<ResultInfo> response) {
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
                 result = "\n ========= Response ========= \n";
 
                 if (!response.isSuccessful()) {
@@ -145,7 +151,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResultInfo> call, Throwable t) {
+            public void onFailure(Call<UserInfo> call, Throwable t) {
                 result = "\n ========= Failure ========= \n";
                 result += ">> Throwable message  : " + t.getMessage() + " \n";
                 Log.d(TAG, ">> onFailure : " + result);
@@ -239,40 +245,48 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         }
     }
 
-    private void parseJSONData(DeviceInfo body) {
-        Log.d(TAG, ">> parseJSONData : String");
-
-        System.out.println(">> " + body);
-//        userId.append();
-//        password.append();
-
-//        HashMap<String,Object> data = (HashMap<String, Object>) body;
-//        int resultCode = (int) data.get("code");
-//        String rereltMessage = (String) data.get("msg");
-//
-//
-        TextView loginUserInfo = (TextView)findViewById(R.id.txtLoginUserInfo);
-        loginUserInfo.setText(body.toString());
-    }
-
     private void parseJSONData(UserInfo body) {
         Log.d(TAG, ">> parseJSONData : String");
 
         System.out.println(">> " + body);
-//        userId.append();
-//        password.append();
 
+        String msg = body.getMsg();
+        int code = body.getCode();
+
+        String result= "========== Result =============\n";
+        if(msg == null){
+            result += "UserID : "  + body.getBasicProperty().getUserID()+ "\n";
+            result += "UserPW : "  + body.getBasicProperty().getUserPW()+ "\n";
+            result += "Sex : "     + body.getBasicProperty().getSex()+ "\n";
+            result += "NAME : "    + body.getBasicProperty().getUserName().getFirstName() +" "
+                                    + body.getBasicProperty().getUserName().getMiddleName() +" "
+                                    + body.getBasicProperty().getUserName().getLastName()+ "\n";
+        }else{
+            result += "msg : " + msg + "\n";
+            result += "code : "+ code+ "\n";
+        }
         TextView loginUserInfo = (TextView)findViewById(R.id.txtLoginUserInfo);
-        result += "\n\n ========= Result ========= \n";
-                result += body.getStatusPropertyUser() + "\n";
-        result += body.getBasicPropertyUser() + "\n";
-        result += body.getAdditionalPropertyUser() + "\n";
-        result += body.getServiceIDListProperty() + "\n";
-        result += "UpdatedDate : "+ body.getUpdatedDate() + "\n";
-        result += "CreatedDate : " + body.getCreatedDate() + "\n";
-        result += "ID : " + body.getId() + "\n";
-
         loginUserInfo.setText(result);
     }
+
+//    private void parseJSONData(UserInfo body) {
+//        Log.d(TAG, ">> parseJSONData : String");
+//
+//        System.out.println(">> " + body);
+////        userId.append();
+////        password.append();
+//
+//        TextView loginUserInfo = (TextView)findViewById(R.id.txtLoginUserInfo);
+//        result += "\n\n ========= Result ========= \n";
+//                result += body.getStatusPropertyUser() + "\n";
+//        result += body.getBasicPropertyUser() + "\n";
+//        result += body.getAdditionalPropertyUser() + "\n";
+//        result += body.getServiceIDListProperty() + "\n";
+//        result += "UpdatedDate : "+ body.getUpdatedDate() + "\n";
+//        result += "CreatedDate : " + body.getCreatedDate() + "\n";
+//        result += "ID : " + body.getId() + "\n";
+//
+//        loginUserInfo.setText(result);
+//    }
 
 }

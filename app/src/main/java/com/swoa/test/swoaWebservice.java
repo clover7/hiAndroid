@@ -1,7 +1,5 @@
 package com.swoa.test;
 
-import com.swoa.test.pojo.ResultInfo;
-
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -24,7 +22,7 @@ public interface SWOAWebservice {
         "Cookie: JSESSIONID=286DA79D26E1C5F8F3F756C0D7C452DE"
 })
     @POST("/swomanager/users")
-    Call<ResultInfo> createUser(@Body DeviceInfo params);
+    Call<UserInfo> createUser(@Body DeviceInfo params);
 //    POST /swomanager/users HTTP/1.1
     //                Host: 129.254.221.27:8080
 //                Connection: keep-alive

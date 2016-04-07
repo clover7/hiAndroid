@@ -2,7 +2,10 @@ package com.swoa.test;
 
 import com.swoa.test.pojo.AdditionalPropertyUser;
 import com.swoa.test.pojo.BasicPropertyUser;
+import com.swoa.test.pojo.ServiceIDListPropertyUser;
 import com.swoa.test.pojo.StatusPropertyUser;
+
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,14 +15,16 @@ import lombok.Setter;
  */
 public class UserInfo {
 //    @Getter @Setter private String
-
-     @Getter @Setter private String createdDate = "";
-     @Getter @Setter private String updatedDate = "";
-     @Getter @Setter private String serviceIDListProperty = "";
+     @Getter @Setter int code;
+     @Getter @Setter String msg;
+     @Getter @Setter private Date createdDate;
+     @Getter @Setter private Date updatedDate;
      @Getter @Setter private String id = "";
-     @Getter @Setter public BasicPropertyUser basicPropertyUser ;
-     @Getter @Setter public StatusPropertyUser statusPropertyUser ;
-     @Getter @Setter public AdditionalPropertyUser additionalPropertyUser;
+     @Getter @Setter private BasicPropertyUser basicProperty ;
+     @Getter @Setter private StatusPropertyUser statusProperty ;
+     @Getter @Setter private AdditionalPropertyUser additionalProperty;
+     @Getter @Setter private ServiceIDListPropertyUser serviceIDListProperty;
+
 }
 
 

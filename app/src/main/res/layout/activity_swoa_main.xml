@@ -20,12 +20,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Layout Example"
                 android:id="@+id/:title_swoa"
                 android:paddingBottom="20px"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <TextView android:text="UserID"/>
+                <EditText android:id="@+id/editUserID"
+                    />
+
+                <TextView android:text="UserPW"/>
+                <EditText android:id="@+id/editUserPW"
+                    android:text="1234"/>
+                <TextView android:text="FIRST NAME"/>
+                <EditText android:id="@+id/editUserFM"
+                    android:text="test"/>
+                <TextView android:text="LAST NAME"/>
+                <EditText android:id="@+id/editUserLM"
+                     />
+            </GridLayout>
 
             <GridLayout
                 android:layout_width="match_parent"

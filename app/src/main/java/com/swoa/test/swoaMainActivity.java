@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.clover.seishun.hiandroid.R;
 
@@ -89,13 +90,27 @@ public class SwoaMainActivity extends AppCompatActivity {
     }
 
     private void createUser() {
-        String userId = "INswoapat1";
-        String password = "1234";
+        EditText editUserID = (EditText)findViewById(R.id.editUserID);
+        EditText editUserPW = (EditText)findViewById(R.id.editUserPW);
+        EditText editUserFM = (EditText)findViewById(R.id.editUserFM);
+        EditText editUserLM = (EditText)findViewById(R.id.editUserLM);
+
+        String UserID = editUserID.getText().toString();
+        String UserPW = editUserPW.getText().toString();
+        String UserFM = editUserFM.getText().toString();
+        String UserLM = editUserLM.getText().toString();
+
+        String userId = UserID;
+        String password = UserPW;
+        String firstName = UserFM;
+        String lastName = UserLM;
 
         Intent intent = new Intent(this, SWOAWebserviceActivity.class);
         HashMap<String, String> params= new HashMap<>();
         params.put("userId",userId);
         params.put("password", password);
+        params.put("firstName",firstName);
+        params.put("lastName", lastName);
 
         intent.putExtra("params", params);
         intent.putExtra("btnClick",1);
@@ -104,8 +119,20 @@ public class SwoaMainActivity extends AppCompatActivity {
     }
 
     private void loginUserInfo(){
-        String userId = "INswoapat1";
-        String password = "1234";
+        EditText editUserID = (EditText)findViewById(R.id.editUserID);
+        EditText editUserPW = (EditText)findViewById(R.id.editUserPW);
+        EditText editUserFM = (EditText)findViewById(R.id.editUserFM);
+        EditText editUserLM = (EditText)findViewById(R.id.editUserLM);
+
+        String UserID = editUserID.getText().toString();
+        String UserPW = editUserPW.getText().toString();
+        String UserFM = editUserFM.getText().toString();
+        String UserLM = editUserLM.getText().toString();
+
+        String userId = UserID;
+        String password = UserPW;
+        String firstName = UserFM;
+        String lastName = UserLM;
 
         Intent intent = new Intent(this, SWOAWebserviceActivity.class);
         HashMap<String, String> params= new HashMap<>();

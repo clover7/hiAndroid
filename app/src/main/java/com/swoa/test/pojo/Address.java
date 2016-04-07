@@ -13,6 +13,4 @@ public class Address {
     @Getter @Setter private String dong = "";
     @Getter @Setter private String ho = "";
 
-
-
 }
