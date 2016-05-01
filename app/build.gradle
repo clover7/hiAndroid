@@ -54,8 +54,49 @@ dependencies{
     compile 'com.mcxiaoke.volley:library:1.0.18'
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // replace with the current version of the Android plugin
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        // replace with the current version of the android-apt plugin
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 def AAVersion = '3.2'
+
 dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+        // if you have multiple outputs (when using splits), you may want to have other index than 0
+
+        // you should set your package name here if you are using different application IDs
+        // resourcePackageName "your.package.name"
+
+        // You can set optional annotation processing options here, like these commented options:
+        // logLevel 'INFO'
+        // logFile '/var/log/aa.log'
+    }
+}
+//
+//def AAVersion = '3.2'
+//dependencies {
+//    compile "org.androidannotations:androidannotations-api:$AAVersion"
+//}
+
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
 }
 
@@ -77,3 +118,28 @@ dependencies{
     provided "org.projectlombok:lombok:1.16.8"
     compile 'javax.annotation:javax.annotation-api:1.2'
 }
+
+//
+//dependencies{
+//    compile 'com.google.android.gms:play-services-plus:8.4.0'
+//    compile 'com.google.android.gms:play-services-auth:8.4.0'
+//    compile 'com.google.android.gms:play-services-base:8.4.0'
+//    compile 'com.google.android.gms:play-services-identity:8.4.0'
+//    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+//    compile 'com.google.android.gms:play-services-appinvite:8.4.0'
+//    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+//    compile 'com.google.android.gms:play-services-cast:8.4.0'
+//    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+//    compile 'com.google.android.gms:play-services-drive:8.4.0'
+//    compile 'com.google.android.gms:play-services-fitness:8.4.0'
+//    compile 'com.google.android.gms:play-services-location:8.4.0'
+//    compile 'com.google.android.gms:play-services-maps:8.4.0'
+//    compile 'com.google.android.gms:play-services-ads:8.4.0'
+//    compile 'com.google.android.gms:play-services-vision:8.4.0'
+//    compile 'com.google.android.gms:play-services-nearby:8.4.0'
+//    compile 'com.google.android.gms:play-services-panorama:8.4.0'
+//    compile 'com.google.android.gms:play-services-games:8.4.0'
+//    compile 'com.google.android.gms:play-services-safetynet:8.4.0'
+//    compile 'com.google.android.gms:play-services-wallet:8.4.0'
+//    compile 'com.google.android.gms:play-services-wearable:8.4.0'
+//}

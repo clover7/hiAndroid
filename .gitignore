@@ -22,3 +22,5 @@ build/**/*.*
 .gradle/2.4/taskArtifacts/fileHashes.bin
 
 .gradle/2.4/taskArtifacts/cache.properties.lock
+
+.idea/libraries/support_vector_drawable_23_2_0.xml

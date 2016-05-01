@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.clover.seishun.hiandroid.Annotation.AnnotationStart_;
 import com.clover.seishun.hiandroid.Network.RetrofitLibraryActivity;
 import com.clover.seishun.hiandroid.android.AdapterViewActivity;
-import com.clover.seishun.hiandroid.Annotation.AnnotationActivity;
 import com.clover.seishun.hiandroid.android.BroadcastReceiverActivity;
 import com.clover.seishun.hiandroid.android.ContentProviderActivity;
 import com.clover.seishun.hiandroid.android.CustomViewActivity;
@@ -128,7 +128,7 @@ public class AndroidActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.annotationBtn:
-                intent = new Intent(this, AnnotationActivity.class);
+                intent = new Intent(this, AnnotationStart_.class);
                 startActivity(intent);
                 break;
             case R.id.RestfulBtn:
@@ -207,8 +207,6 @@ public class AndroidActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode){
             case ACT_VIEW:
                 if(resultCode == RESULT_OK){
@@ -224,5 +222,8 @@ public class AndroidActivity extends AppCompatActivity {
          * 요청코드 처리결과 인텐트가 인수로 전달되므로 해당 정보를 참조하여 액티비티의 동작 결과를 사용한다.
          * */
     }
+
+
+
 
 }

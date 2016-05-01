@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
                 break;
             case R.id.btnCoffee:
                 intent = new Intent(this, CoffeeActivity.class);
-                Toast.makeText(MainActivity.this, "CoffeeActivity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "CoffeeActivity_", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
             case R.id.btnBLE:
@@ -101,7 +101,6 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "SwoaMainActivity", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
-
         }
 
     }

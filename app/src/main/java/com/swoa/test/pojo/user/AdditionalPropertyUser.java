@@ -1,4 +1,4 @@
-package com.swoa.test.pojo;
+package com.swoa.test.pojo.user;
 
 import lombok.Getter;
 import lombok.Setter;

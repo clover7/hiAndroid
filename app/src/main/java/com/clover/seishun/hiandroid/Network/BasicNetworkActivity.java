@@ -159,7 +159,6 @@ public class BasicNetworkActivity extends AppCompatActivity {
         }
     }
 
-
     private class RtroThread extends Thread{
         String mUrl;
         public RtroThread(String apiUrl) {

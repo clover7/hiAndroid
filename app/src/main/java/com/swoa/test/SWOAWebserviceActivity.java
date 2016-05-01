@@ -9,12 +9,14 @@ import android.widget.TextView;
 
 import com.clover.seishun.hiandroid.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.swoa.test.pojo.AdditionalProperty;
-import com.swoa.test.pojo.Address;
-import com.swoa.test.pojo.BasicProperty;
-import com.swoa.test.pojo.PhoneNumber;
-import com.swoa.test.pojo.StatusProperty;
-import com.swoa.test.pojo.UserName;
+import com.swoa.test.pojo.UserProperties;
+import com.swoa.test.pojo.User;
+import com.swoa.test.pojo.user.AdditionalProperty;
+import com.swoa.test.pojo.user.Address;
+import com.swoa.test.pojo.user.BasicProperty;
+import com.swoa.test.pojo.user.PhoneNumber;
+import com.swoa.test.pojo.user.StatusProperty;
+import com.swoa.test.pojo.user.UserName;
 
 import java.util.HashMap;
 
@@ -29,7 +31,6 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
     private static final String API_URL = "http://129.254.221.27:8080";
     private String result = null;
 
-    DeviceInfo deviceInfo;
     ProgressDialog mProgress;
 //    @ViewById(R.id.txtLoginUserInfo)
 //    TextView loginUserInfo;
@@ -46,6 +47,13 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
     private String firstName;
     private String lastName;
     private String sex;
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(API_URL)
+            .addConverterFactory(JacksonConverterFactory.create())
+            .build();
+
+    SWOAWebservice swoaWebservice = retrofit.create(SWOAWebservice.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +76,6 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         sex = "FEMALE";
 
         password = Integer.parseInt(strPassword);
-
-//        Serializable event = intent.getSerializableExtra("btnClick");
         int event = intent.getIntExtra("btnClick", 0);
         try {
             retrofitStart(event);
@@ -82,7 +88,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         //retrofitStart();
     }
 
-    private void setUserInfo(SWOAWebservice swoaWebservice) throws JsonProcessingException {
+    private void setUserInfo() {
         Log.d(TAG, ">> RetroDownloadJson(String " + API_URL + ")");
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -98,7 +104,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
 
         SWOAWebservice service = retrofit.create(SWOAWebservice.class);
 
-        DeviceInfo deviceInfo = new DeviceInfo();
+        UserProperties userProperties = new UserProperties();
         BasicProperty basicProperty = new BasicProperty();
         StatusProperty statusProperty = new StatusProperty();
         AdditionalProperty additionalProperty = new AdditionalProperty();
@@ -106,11 +112,18 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         basicProperty.setUserID(userId);
         basicProperty.setUserPW(strPassword);
         basicProperty.setSex(sex);
+        basicProperty.setUserName(null);
+        basicProperty.setRoles(null);
+        basicProperty.setSecurityLevel(null);
+        basicProperty.setPrivacyLevel(null);
+        basicProperty.setLastLogin(null);
+        basicProperty.setSsn(null);
+        basicProperty.setMarriage(null);
 
         PhoneNumber phoneNumber = new PhoneNumber();
         basicProperty.setPhoneNumber(phoneNumber);
-
         Address address = new Address();
+        address.setApt(null);
         basicProperty.setAddress(address);
 
         UserName userName = new UserName();
@@ -118,14 +131,14 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         userName.setLastName(lastName);
         basicProperty.setUserName(userName);
 
-        deviceInfo.setAdditionalProperty(additionalProperty);
-        deviceInfo.setBasicProperty(basicProperty);
-        deviceInfo.setStatusProperty(statusProperty);
+        userProperties.setAdditionalProperty(additionalProperty);
+        userProperties.setBasicProperty(basicProperty);
+        userProperties.setStatusProperty(statusProperty);
 
-        Call<UserInfo> createUserCall = service.createUser(deviceInfo);
-        createUserCall.enqueue(new Callback<UserInfo>() {
+        Call<User> createUserCall = service.createUser(userProperties);
+        createUserCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 result = "\n ========= Response ========= \n";
 
                 if (!response.isSuccessful()) {
@@ -151,7 +164,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 result = "\n ========= Failure ========= \n";
                 result += ">> Throwable message  : " + t.getMessage() + " \n";
                 Log.d(TAG, ">> onFailure : " + result);
@@ -168,24 +181,18 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
 
     private void getLoginUserInfo(String userId, Integer password) {
         Log.d(TAG, ">> RetroDownloadJson(String " + API_URL + ")");
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build();
-
         Log.d(TAG, ">> retrofit build");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("userID", userId);
         params.put("password", password);
 
-        SWOAWebservice swoaWebservice = retrofit.create(SWOAWebservice.class);
 
-        Call<UserInfo> loginUserCall = swoaWebservice.loginUserMap(params);
-        loginUserCall.enqueue(new Callback<UserInfo>() {
+
+        Call<User> loginUserCall = swoaWebservice.loginUserMap(params);
+        loginUserCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
 
                 result = "\n ========= Response ========= \n";
                 result += ">> message : " + response.message() + " \n"
@@ -206,7 +213,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 result = "\n ========= Failure ========= \n";
                 result += ">> Throwable message  : " + t.getMessage() + " \n";
 
@@ -218,23 +225,13 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         mProgress.dismiss();
     }
 
-    private void retrofitStart(int event) throws JsonProcessingException {
+      private void retrofitStart(int event) throws JsonProcessingException {
         Log.d(TAG, ">> RetroDownloadJson(String " + API_URL + ")");
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build();
-
-        Log.d(TAG,">> retrofit build");
-
-        // Create an instance of our GitHub API interface.
-        SWOAWebservice swoaWebservice = retrofit.create(SWOAWebservice.class);
 
         switch(event) {
             case 1:
                 mProgress = ProgressDialog.show(this,"wait","Downloading....");
-                setUserInfo(swoaWebservice);
+                setUserInfo();
                 mProgress.dismiss();
                 break;
             case 2:
@@ -245,7 +242,62 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         }
     }
 
-    private void parseJSONData(UserInfo body) {
+    public void getUser(User params){
+        Call<User> findUserCall = swoaWebservice.findUser(params);
+        findUserCall.enqueue(new Callback<User>(){
+            //params : ((ExecutorCallAdapterFactory.ExecutorCallbackCall) call).delegate.args
+
+            String rResult = "";
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+//                responseInfo(call, response);
+
+                if (!response.isSuccessful()) {
+                    result += ">> error responseInfo, no access to resource?";
+                    result += call.request().url() + ": failed: " + response.code();
+                    System.out.println(call.request().url() + ": failed: " + response.code());
+
+                    return;
+                } else {
+                    // tasks available
+//                    result += ">> responseInfo : " + response.raw() + " \n"
+//                            + ">> body : " + response.body();
+
+                    User body = response.body();
+                    String msg = body.getMsg();
+                    int code = body.getCode();
+
+                    rResult= "========== Result =============\n";
+                    if(msg == null){
+                        rResult += "ID : "  + body.getId()+ "\n";
+                        rResult += "CREATE DATE : " + body.getCreatedDate()+ "\n";
+                        rResult += "UPDATE DATE : " + body.getUpdatedDate()+ "\n";
+                        rResult += "STATUS : " + body.getStatusProperty().getStatus()+ "\n";
+                        rResult += "UserID : "  + body.getBasicProperty().getUserID()+ "\n";
+                        rResult += "UserPW : "  + body.getBasicProperty().getUserPW()+ "\n";
+                        rResult += "SEX : "     + body.getBasicProperty().getSex()+ "\n";
+                        rResult += "NAME : "    + body.getBasicProperty().getUserName().getFirstName() +" "
+                                + body.getBasicProperty().getUserName().getMiddleName() +" "
+                                + body.getBasicProperty().getUserName().getLastName()+ "\n";
+                    }
+                }
+//                showToastMessage(rResult);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                result = "\n ========= Failure ========= \n";
+                result += ">> Throwable message  : " + t.getMessage() + " \n";
+
+                Log.d(TAG, ">> onFailure : " + result);
+                TextView loginUserInfo = (TextView)findViewById(R.id.txtLoginUserInfo);
+                loginUserInfo.setText(result);
+            }
+        });
+    }
+
+
+    private void parseJSONData(User body) {
         Log.d(TAG, ">> parseJSONData : String");
 
         System.out.println(">> " + body);
@@ -269,7 +321,7 @@ public class SWOAWebserviceActivity extends AppCompatActivity {
         loginUserInfo.setText(result);
     }
 
-//    private void parseJSONData(UserInfo body) {
+//    private void parseJSONData(User body) {
 //        Log.d(TAG, ">> parseJSONData : String");
 //
 //        System.out.println(">> " + body);
